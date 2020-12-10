@@ -7,9 +7,9 @@ I recommend checking it out before using this solver. The basic idea of this puz
 
 ![Example Loopy Puzzle](example_puzzle.jpg)
 
-I was stuck on one of the square grid levels and thought about the strategies I was using to solve it, and realized that they can be generalized to an optimization problem. I converted the puzzle into a set of constraints and was pleasantly surprised that it solves the puzzle!
+I was stuck on one of the square grid levels and thought about the strategies I was using to solve it, and realized that this can be generalized to an optimization problem. I converted the puzzle into a set of constraints and was pleasantly surprised that the program solves the puzzle!
 
-## A bit about the implementation details
+## Implementation
 
 The puzzle can be represented as a set of vertices and connecting edges that form the grid.
 
@@ -42,7 +42,7 @@ _322_3_3__
 The first two lines represent the number of rows and columns of the grid.
 The rest of the file should match the loopy puzzle, with `_` denoting an empty square.
 
-Make sure the required PuLP library (an LP modelere) is installed:
+Make sure the required PuLP library (an LP modeler) is installed:
 ```
 $ python3 -m pip install pulp
 ```
@@ -55,4 +55,5 @@ $ python3 loopy_solver.py <filename>
 ```
 
 Here is the relevant portion of the solver output:
+
 ![Solver Output](solution_output.png)
