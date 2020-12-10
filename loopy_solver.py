@@ -51,7 +51,7 @@ def solve():
     # Prune solutions until contains only once cycle
     while number_of_cycles != 1:
         # ensure same solution cannot be reached
-        _, path = zip(*pos_choices(choices))
+        _, path = pos_choices(choices)
         loopy += lpSum(path) <= len(path) - 1
 
         loopy.solve(PULP_CBC_CMD(msg=0))
@@ -64,7 +64,7 @@ def solve():
     output_grid(ROWS, COLS, constraints, EDGES)
 
     print("solution grid:")
-    edges, _ = zip(*pos_choices(choices))
+    edges, _ = pos_choices(choices)
     output_grid(ROWS, COLS, constraints, edges)
 
 
@@ -120,13 +120,13 @@ def vert_to_box_edges(i, j):
 
 
 def pos_choices(choices):
-    return list(filter(lambda choice: value(choice[1]) == 1, choices.items()))
+    return zip(*filter(lambda choice: value(choice[1]) == 1, choices.items()))
 
 
 def cycle_count(rows, cols, vertices, choices):
     graph = Graph(vertices)
 
-    graph_edges, _ = zip(*pos_choices(choices))
+    graph_edges, _ = pos_choices(choices)
     for vert1, vert2 in graph_edges:
         graph.add_edge(vert1, vert2)
 
