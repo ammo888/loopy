@@ -45,7 +45,7 @@ def solve():
         return
 
     iteration = 1
-    number_of_cycles = cycle_count(ROWS, COLS, VERTICES, choices)
+    number_of_cycles = cycle_count(VERTICES, choices)
     print("iteration", iteration, "number of cycles", number_of_cycles)
 
     # Prune solutions until contains only once cycle
@@ -55,7 +55,7 @@ def solve():
         loopy += lpSum(path) <= len(path) - 1
 
         loopy.solve(PULP_CBC_CMD(msg=0))
-        number_of_cycles = cycle_count(ROWS, COLS, VERTICES, choices)
+        number_of_cycles = cycle_count(VERTICES, choices)
 
         iteration += 1
         print("iteration", iteration, "number of cycles", number_of_cycles)
@@ -123,7 +123,7 @@ def pos_choices(choices):
     return zip(*filter(lambda choice: value(choice[1]) == 1, choices.items()))
 
 
-def cycle_count(rows, cols, vertices, choices):
+def cycle_count(vertices, choices):
     graph = Graph(vertices)
 
     graph_edges, _ = pos_choices(choices)
