@@ -71,7 +71,7 @@ def solve():
 
 def parse():
     if len(sys.argv) != 2:
-        print("Usage: loopy_solver.py <filename>")
+        print("Usage: loopy_solver_ortools.py <filename>")
         exit(1)
 
     filename = sys.argv[1]

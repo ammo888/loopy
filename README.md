@@ -42,16 +42,20 @@ _322_3_3__
 The first two lines represent the number of rows and columns of the grid.
 The rest of the file should match the loopy puzzle, with `_` denoting an empty square.
 
-Make sure the required PuLP library (an LP modeler) is installed:
+Make sure the required PuLP library and OR tools is installed:
 ```
-$ python3 -m pip install pulp
+$ python3 -m pip install pulp ortools
 ```
 
-Run the solver with the input file as an argument:
+Run the pulp or ortools solver with the input file as an argument:
 ```
 $ ./loopy_solver.py <filename>
 or
 $ python3 loopy_solver.py <filename>
+or
+$ ./loopy_solver_ortools.py <filename>
+or
+$ python3 loopy_solver.ortools.py <filename>
 ```
 
 Here is the relevant portion of the solver output:
