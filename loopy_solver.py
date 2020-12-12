@@ -9,9 +9,11 @@ from union_find import *
 
 def solve():
     ROWS, COLS, constraints = parse()
-    print("constraints:", constraints)
 
     VERTICES, EDGES, VERT_TO_EDGES = structures(ROWS, COLS)
+
+    print("input grid:")
+    output_grid(ROWS, COLS, constraints, EDGES)
 
     loopy = LpProblem("Loopy")
 
@@ -28,10 +30,8 @@ def solve():
         loopy += z1 + z2 == 1  # count is either 0 or 2
 
     # Box number constraints
-    print("box constraints:")
     for (i, j), v in constraints.items():
         edges = vert_to_box_edges(i, j)
-        print("vertex:", (i, j), "value:", v, "edges:", edges)
 
         s = lpSum([choices[edge] for edge in edges])  # count of chosen edges for a vertex
         loopy += s == v
@@ -59,9 +59,6 @@ def solve():
 
         iteration += 1
         print("iteration", iteration, "number of cycles", number_of_cycles)
-
-    print("input grid:")
-    output_grid(ROWS, COLS, constraints, EDGES)
 
     print("solution grid:")
     edges, _ = pos_choices(choices)
